@@ -1,7 +1,7 @@
-import Link from "next/link";
 import React from "react";
 import Image from "next/image";
 import RenderTag from "../RenderTag";
+import Link from "next/link";
 const popularTahgs = [
   { _id: "1", name: "javascript", totalQuestions: 5 },
   { _id: "2", name: "react", totalQuestions: 5 },
