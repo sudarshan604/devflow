@@ -1,7 +1,6 @@
 import Link from "next/link";
 import React from "react";
 import RenderTag from "../shared/RenderTag";
-import RenderTag from "../shared/RenderTag";
 
 interface QuestionProps {
   id: string;
