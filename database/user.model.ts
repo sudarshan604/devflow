@@ -1,7 +1,7 @@
 import { Schema, models, model, Document } from "mongoose";
 
 export interface IUser extends Document {
-  clerkID: string;
+  clerkId: string;
   name: string;
   username: string;
   email: string;
@@ -15,7 +15,7 @@ export interface IUser extends Document {
 }
 
 const userSchema = new Schema({
-  clerkID: { type: String, required: true },
+  clerkId: { type: String, required: true },
   name: { type: String, required: true },
   username: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
@@ -27,6 +27,6 @@ const userSchema = new Schema({
   saved: [{ type: Schema.Types.ObjectId, ref: "Question" }],
   joinedAt: { type: Date, default: Date.now },
 });
-const Question = models.Question || model("Question", userSchema);
+const User = models.User || model("User", userSchema);
 
-export default Question;
+export default User;

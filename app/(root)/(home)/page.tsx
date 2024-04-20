@@ -7,60 +7,11 @@ import Filter from "@/components/shared/FIlter";
 import HomeFilters from "@/components/home/HomeFilters";
 import NoResult from "@/components/shared/NoResult";
 import QuestionCards from "@/components/cards/QuestionCard";
-const questions = [
-  {
-    _id: "1",
-    title: "How to learn programming?",
-    tags: [
-      { _id: "1", name: "programming" },
-      { _id: "2", name: "learning" },
-    ],
-    author: {
-      _id: "101",
-      name: "John Doe",
-      picture: "john-doe.jpg",
-    },
-    upvotes: 10,
-    views: 100,
-    answers: [],
-    createdAt: new Date("2024-04-01"),
-  },
-  {
-    id: "2",
-    title: "What are the best practices for web development?",
-    tags: [
-      { _id: "3", name: "web development" },
-      { _id: "4", name: "best practices" },
-    ],
-    author: {
-      _id: "102",
-      name: "Jane Smith",
-      picture: "jane-smith.jpg",
-    },
-    upvotes: 15,
-    views: 150,
-    answers: [],
-    createdAt: new Date("2024-03-30"),
-  },
-  {
-    id: "3",
-    title: "How to become a data scientist?",
-    tags: [
-      { _id: "5", name: "data science" },
-      { _id: "6", name: "career" },
-    ],
-    author: {
-      _id: "103",
-      name: "Alice Johnson",
-      picture: "alice-johnson.jpg",
-    },
-    upvotes: 20,
-    views: 200,
-    answers: [],
-    createdAt: new Date("2024-03-28"),
-  },
-];
-export default function Home() {
+import { getQuestions } from "@/lib/action/question.action";
+
+export default async function Home() {
+  const result = await getQuestions({});
+
   return (
     <>
       <div className="flex w-full flex-col-reverse justify-between gap-4 sm:flex-row sm:items-center">
@@ -90,8 +41,8 @@ export default function Home() {
         <HomeFilters />
       </div>
       <div className="mt-10 flex w-full flex-col gap-6">
-        {questions.map((question) => {
-          if (questions.length > 0) {
+        {result?.question.map((question) => {
+          if (result.question.length > 0) {
             return (
               <QuestionCards
                 key={question._id}
