@@ -19,6 +19,7 @@ import {
 import { useForm } from "react-hook-form";
 import { Badge } from "../ui/badge";
 import Image from "next/image";
+import { createQuestion } from "@/lib/action/question.action";
 
 const type: any = "post ";
 
@@ -33,13 +34,11 @@ const Question = () => {
       tags: [],
     },
   });
-  const onSubmit = (values: z.infer<typeof QuestionSchema>) => {
+  const onSubmit = async (values: z.infer<typeof QuestionSchema>) => {
     setIsSubmitting(true);
 
     try {
-      // make a async call to  api -> create a question
-      // contain all form data
-      // navigate to home page
+      await createQuestion();
     } catch (error) {
     } finally {
     }
@@ -118,6 +117,8 @@ const Question = () => {
                     editorRef.current = editor;
                   }}
                   initialValue=""
+                  onBlur={field.onBlur}
+                  onEditorChange={(content) => field.onChange(content)}
                   init={{
                     height: 500,
                     menubar: false,
