@@ -1,3 +1,4 @@
+/* eslint-disable no-empty */
 "use client";
 import React, { useRef, useState } from "react";
 
@@ -45,7 +46,7 @@ const Question = ({ mongoUserId }: { mongoUserId: string }) => {
         content: values.explanation,
         tags: values.tags,
         author: JSON.parse(mongoUserId),
-        // path: pathname,
+        path: pathname,
       });
       router.push("/");
     } catch (error) {
@@ -102,8 +103,7 @@ const Question = ({ mongoUserId }: { mongoUserId: string }) => {
                 />
               </FormControl>
               <FormDescription className="body-regular mt-2.5 text-light-500">
-                Be specific and imagine you're asking a question to another
-                person
+                Be specific and imagine you asking a question to another person
               </FormDescription>
               <FormMessage className="text-red-500" />
             </FormItem>
