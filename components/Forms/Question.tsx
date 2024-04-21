@@ -1,3 +1,4 @@
+/* eslint-disable no-empty */
 "use client";
 import React, { useRef, useState } from "react";
 
@@ -20,14 +21,15 @@ import { useForm } from "react-hook-form";
 import { Badge } from "../ui/badge";
 import Image from "next/image";
 import { createQuestion } from "@/lib/action/question.action";
-import { useRouter, usePathname } from "next/navigation";
+// import { useRouter, usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 const type: any = "post ";
 
 const Question = ({ mongoUserId }: { mongoUserId: string }) => {
   const editorRef = useRef(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
-  const pathname = usePathname();
+  // const pathname = usePathname();
 
   const form = useForm<z.z.infer<typeof QuestionSchema>>({
     resolver: zodResolver(QuestionSchema),
@@ -45,7 +47,7 @@ const Question = ({ mongoUserId }: { mongoUserId: string }) => {
         content: values.explanation,
         tags: values.tags,
         author: JSON.parse(mongoUserId),
-        // path: pathname,
+        path: "",
       });
       router.push("/");
     } catch (error) {
@@ -102,8 +104,7 @@ const Question = ({ mongoUserId }: { mongoUserId: string }) => {
                 />
               </FormControl>
               <FormDescription className="body-regular mt-2.5 text-light-500">
-                Be specific and imagine you're asking a question to another
-                person
+                Be specific and imagine you asking a question to another person
               </FormDescription>
               <FormMessage className="text-red-500" />
             </FormItem>
