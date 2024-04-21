@@ -21,15 +21,14 @@ import { useForm } from "react-hook-form";
 import { Badge } from "../ui/badge";
 import Image from "next/image";
 import { createQuestion } from "@/lib/action/question.action";
-// import { useRouter, usePathname } from "next/navigation";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 const type: any = "post ";
 
 const Question = ({ mongoUserId }: { mongoUserId: string }) => {
   const editorRef = useRef(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
-  // const pathname = usePathname();
+  const pathname = usePathname();
 
   const form = useForm<z.z.infer<typeof QuestionSchema>>({
     resolver: zodResolver(QuestionSchema),
@@ -47,7 +46,7 @@ const Question = ({ mongoUserId }: { mongoUserId: string }) => {
         content: values.explanation,
         tags: values.tags,
         author: JSON.parse(mongoUserId),
-        path: "",
+        path: pathname,
       });
       router.push("/");
     } catch (error) {
