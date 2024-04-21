@@ -1,4 +1,4 @@
-import GlobalSearch from "@/components/shared/search/GlobalSearch";
+// import GlobalSearch from "@/components/shared/search/GlobalSearch";
 import LocalSearchbar from "@/components/shared/search/LocalSearchbar";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";

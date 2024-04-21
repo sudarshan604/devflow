@@ -1,7 +1,7 @@
 import React from "react";
 import Question from "@/components/Forms/Question";
 import { redirect } from "next/navigation";
-import { auth } from "@clerk/nextjs";
+// import { auth } from "@clerk/nextjs";
 import { getUserById } from "@/lib/action/user.action";
 
 const Page = async () => {
