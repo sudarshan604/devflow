@@ -5,6 +5,7 @@ import { connectToDatabse } from "./moongooser";
 import {
   CreateUserParams,
   DeleteUserParam,
+  GetAllUsersParams,
   UpdateUserParams,
 } from "./shared.types";
 import { revalidatePath } from "next/cache";
@@ -69,3 +70,26 @@ export async function deleteUser(params: DeleteUserParam) {
     console.log(error);
   }
 }
+
+export async function getAllUsers(params: GetAllUsersParams) {
+  try {
+    connectToDatabse();
+    const { page = 1, pageSize = 20, filter, searchQuery } = params;
+
+    const users = await User.find({}).sort({ createdAt: -1 });
+
+    return { users };
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+// export async function getAllUsers(params: GetAllUsersParams) {
+//   try {
+//     connectToDatabse();
+//   } catch (error) {
+//     console.log(error);
+//     throw error
+//   }
+// }

@@ -38,8 +38,8 @@ export default async function Home() {
           otherClasses="min-h-[56px] sm:min-w-[170px]"
           containerClasses="hidden max-md:flex"
         />
-        <HomeFilters />
       </div>
+      <HomeFilters />
       <div className="mt-10 flex w-full flex-col gap-6">
         {result?.question.map((question) => {
           if (result.question.length > 0) {
