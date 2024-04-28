@@ -7,7 +7,7 @@ import { GetTopInteractedTagsParams } from "./shared.types";
 export async function getTopInteractedTags(params: GetTopInteractedTagsParams) {
   try {
     connectToDatabse();
-    const { userId, limit = 3 } = params;
+    const { userId } = params;
 
     const user = await User.findById(userId);
 
