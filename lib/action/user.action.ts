@@ -1,5 +1,4 @@
 "use server";
-
 import User from "@/database/user.model";
 import { connectToDatabse } from "./moongooser";
 import {
@@ -29,7 +28,6 @@ export async function createUser(userData: CreateUserParams) {
   try {
     connectToDatabse();
     const newUser = await User.create(userData);
-
     return newUser;
   } catch (error) {
     console.log(error);
