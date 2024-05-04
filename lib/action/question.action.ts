@@ -3,7 +3,11 @@ import Question from "@/database/question.model";
 import { connectToDatabse } from "./moongooser";
 import Tag from "@/database/tag.model";
 import User from "@/database/user.model";
-import { GetQuestionsParams, CreateQuestionParams } from "./shared.types";
+import {
+  GetQuestionsParams,
+  CreateQuestionParams,
+  GetQuestionByIdParams,
+} from "./shared.types";
 import { revalidatePath } from "next/cache";
 
 export async function getQuestions(param: GetQuestionsParams) {
@@ -43,4 +47,22 @@ export async function createQuestion(params: CreateQuestionParams) {
 
     revalidatePath(path);
   } catch (error) {}
+}
+
+export async function getQuestionById(param: GetQuestionByIdParams) {
+  try {
+    connectToDatabse();
+    const { questionId } = param;
+    const question = await Question.findById(questionId)
+      .populate({ path: "tags", model: Tag, select: "_id name" })
+      .populate({
+        path: "author",
+        model: User,
+        select: "_id clerkId name picture",
+      });
+
+    return question;
+  } catch (error) {
+    console.log(error);
+  }
 }

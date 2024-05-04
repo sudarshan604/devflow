@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import RenderTag from "../shared/RenderTag";
+import Metric from "../shared/Metric";
 
 interface QuestionProps {
   id: string;
@@ -38,9 +39,7 @@ const QuestionCard = ({
             {String(createdAt)}
           </span>
           <Link href={`/question/${id}`}>
-            <h3 className="sm:h3-semibold base-semibold text-dark200_light900 line-clamp-1 flex-1">
-              {title}
-            </h3>
+            <h3 className="sm:h3-semibold base-semibold text-dark200_light900 line-clamp-1 flex-1"></h3>
           </Link>
         </div>
       </div>
@@ -48,6 +47,38 @@ const QuestionCard = ({
         {tags.map((tag) => {
           return <RenderTag key={tag._id} _id={tag._id} name={tag.name} />;
         })}
+      </div>
+
+      <div className="flex-between mt-6 w-full flex-wrap gap-3">
+        <Metric
+          imgUrl="assets/icons/avatar.svg"
+          alt="users"
+          value={author.name}
+          title=" - asked 1 hour ago"
+          href={`/profile/${author._id}`}
+          textStyles="body-medium text-dark400_light700"
+        />
+        <Metric
+          imgUrl="/assets/icons/eye.svg"
+          alt="eye"
+          value={views}
+          title=" Views"
+          textStyles="small-medium text-dark400_light800"
+        />
+        <Metric
+          imgUrl="/assets/icons/message.svg"
+          alt="message"
+          value={answers.length}
+          title=" Answers"
+          textStyles="small-medium text-dark400_light800"
+        />
+        <Metric
+          imgUrl="/assets/icons/eye.svg"
+          alt="eye"
+          value={views}
+          title=" Views"
+          textStyles="small-medium text-dark400_light800"
+        />
       </div>
     </div>
   );
