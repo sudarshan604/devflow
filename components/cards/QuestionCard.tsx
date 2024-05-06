@@ -68,7 +68,7 @@ const QuestionCard = ({
         <Metric
           imgUrl="/assets/icons/message.svg"
           alt="message"
-          value={answers.length}
+          value={answers?.length ?? 2}
           title=" Answers"
           textStyles="small-medium text-dark400_light800"
         />
