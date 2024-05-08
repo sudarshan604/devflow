@@ -27,12 +27,15 @@ export async function createQuestion(params: CreateQuestionParams) {
   try {
     connectToDatabse();
     const { title, content, tags, author, path } = params;
+
     const question = await Question.create({
       title,
       content,
       author,
     });
     const tagDocuments = [];
+
+    console.log("q", question);
     for (const tag of tags) {
       const existingTag = await Tag.findOneAndUpdate(
         { name: { $regex: new RegExp(`^${tag}$`, "i") } },

@@ -39,11 +39,13 @@ const QuestionCard = ({
             {String(createdAt)}
           </span>
           <Link href={`/question/${id}`}>
-            <h3 className="sm:h3-semibold base-semibold text-dark200_light900 line-clamp-1 flex-1"></h3>
+            <h3 className="sm:h3-semibold base-semibold text-dark200_light900 line-clamp-1 flex-1">
+              {title}
+            </h3>
           </Link>
         </div>
       </div>
-      <div className="mt-3,5 flex flex-wrap gap-2">
+      <div className="mt-3.5 flex flex-wrap gap-2">
         {tags.map((tag) => {
           return <RenderTag key={tag._id} _id={tag._id} name={tag.name} />;
         })}

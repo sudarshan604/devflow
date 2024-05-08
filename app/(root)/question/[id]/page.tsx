@@ -2,6 +2,8 @@ import { getQuestionById } from "@/lib/action/question.action";
 import Link from "next/link";
 import Image from "next/image";
 import React from "react";
+import Metric from "@/components/shared/Metric";
+import ParseHTML from "@/components/shared/ParseHTML";
 
 const Page = async ({ params }: { params: { id: string } }) => {
   const result = await getQuestionById({ questionId: params.id });
@@ -31,7 +33,30 @@ const Page = async ({ params }: { params: { id: string } }) => {
           {result.title}
         </h2>
       </div>
-      <div></div>
+      <div className="mb-8 mt-5 flex flex-wrap gap-4">
+        <Metric
+          imgUrl="/assets/icons/clock.svg"
+          alt="clock icon"
+          value={`aked ${result.createdAt}`}
+          title=" Views"
+          textStyles="small-medium text-dark400_light800"
+        />
+        <Metric
+          imgUrl="/assets/icons/message.svg"
+          alt="message"
+          value={result.answers?.length}
+          title=" Answers"
+          textStyles="small-medium text-dark400_light800"
+        />
+        <Metric
+          imgUrl="/assets/icons/eye.svg"
+          alt="eye"
+          value={result.views}
+          title=" Views"
+          textStyles="small-medium text-dark400_light800"
+        />
+      </div>
+      <ParseHTML data={result.content} />
     </>
   );
 };
